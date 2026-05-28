@@ -59,6 +59,7 @@ jobs:
           -t $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }} \
           .
 
+
       - name: Push Docker Image ApiDemoForDeploy/Dockerfile
         run: |
           docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }}
