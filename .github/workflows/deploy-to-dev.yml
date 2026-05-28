@@ -13,8 +13,8 @@ permissions:
   contents: read
 
 env:
-  ACR_NAME: ProyectsTests
-  IMAGE_NAME: mydotnet10apiwithcontainer
+  ACR_NAME: proyectstests
+  IMAGE_NAME: mydotnettenapiwithcontainer
   RESOURCE_GROUP: LabPractice
   WEBAPP_NAME: ApiDemo
 
