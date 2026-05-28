@@ -13,7 +13,7 @@ permissions:
 
 env:
   ACR_NAME: ProyectsTests
-  IMAGE_NAME: mydotnet10apiWithContainer
+  IMAGE_NAME: mydotnet10apiwithcontainer
   RESOURCE_GROUP: LabPractice
   WEBAPP_NAME: ApiDemo
 
