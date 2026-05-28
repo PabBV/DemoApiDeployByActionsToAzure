@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path="deploy-to-dev.yml" />
+  </Folder>
+  <Project Path="ApiDemoForDeploy/ApiDemoForDeploy.csproj" />
+</Solution>
