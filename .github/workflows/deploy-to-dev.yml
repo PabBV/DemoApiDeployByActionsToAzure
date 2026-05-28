@@ -1,4 +1,4 @@
-name: Deploy .NET 10 API Container
+name: Deploy .NET 10 API Container to DEV
 
 on:
   push:
