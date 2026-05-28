@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 env:
-  ACR_NAME: ProyectsTests
+  ACR_NAME: proyectstests
   IMAGE_NAME: mydotnet10apiwithcontainer
   RESOURCE_GROUP: LabPractice
   WEBAPP_NAME: ApiDemo
