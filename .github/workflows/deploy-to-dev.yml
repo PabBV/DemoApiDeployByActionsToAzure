@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 env:
-  ACR_NAME: proyectstests
+  ACR_NAME: testcontainers
   IMAGE_NAME: mydotnettenapiwithcontainer
   RESOURCE_GROUP: LabPractice
   WEBAPP_NAME: ApiDemo
