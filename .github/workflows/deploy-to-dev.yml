@@ -53,9 +53,12 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }} .
+          docker build \
+          -f ApiDemoForDeploy/Dockerfile \
+          -t $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }} \
+          .
 
-      - name: Push Docker Image
+      - name: Push Docker Image ApiDemoForDeploy/Dockerfile
         run: |
           docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }}
 
