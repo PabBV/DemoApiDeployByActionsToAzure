@@ -38,7 +38,7 @@ jobs:
           echo "${{ secrets.AZURE_SUBSCRIPTION_ID != '' }}"
 
     
-      
+    
       - name: Checkout
         uses: actions/checkout@v4
 
