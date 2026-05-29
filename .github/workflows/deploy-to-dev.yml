@@ -15,7 +15,7 @@ env:
   ACR_NAME: testcontainers
   IMAGE_NAME: mydotnettenapiwithcontainer
   RESOURCE_GROUP: LabPractice
-  WEBAPP_NAME: ApiDemo
+  WEBAPP_NAME: testlinux
 
 jobs:
 
