@@ -1,9 +1,10 @@
-name: Deploy .NET 10 API Container to DEV
+name: Deploy .NET 10 API Container to PROD
+
 
 on:
   push:
     branches:
-      - dev
+      - main
 
   workflow_dispatch:
 
@@ -75,4 +76,3 @@ jobs:
           az webapp restart \
             --name $WEBAPP_NAME \
             --resource-group $RESOURCE_GROUP
-
