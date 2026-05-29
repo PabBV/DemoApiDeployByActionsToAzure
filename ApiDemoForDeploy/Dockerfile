@@ -1,4 +1,3 @@
-```dockerfile id="hr5o3z"
 # Base runtime
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 
@@ -45,4 +44,3 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 ENTRYPOINT ["dotnet", "ApiDemoForDeploy.dll"]
-```
