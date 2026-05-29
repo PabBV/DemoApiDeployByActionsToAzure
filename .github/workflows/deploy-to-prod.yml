@@ -1,0 +1,78 @@
+name: Deploy .NET 10 API Container to PROD
+
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  ACR_NAME: testcontainers
+  IMAGE_NAME: mydotnettenapiwithcontainer
+  RESOURCE_GROUP: LabPractice
+  WEBAPP_NAME: ApiDemo
+
+jobs:
+
+  build-and-deploy:
+    environment:
+        name: prod
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Debug Secrets
+        run: |
+          echo "CLIENT_ID:"
+          echo "${{ secrets.AZURE_CLIENT_ID != '' }}"
+      
+          echo "TENANT_ID:"
+          echo "${{ secrets.AZURE_TENANT_ID != '' }}"
+      
+          echo "SUBSCRIPTION_ID:"
+          echo "${{ secrets.AZURE_SUBSCRIPTION_ID != '' }}"
+
+    
+    
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Login to ACR
+        run: az acr login --name $ACR_NAME
+
+      - name: Build Docker Image
+        run: |
+          docker build \
+          -f ApiDemoForDeploy/Dockerfile \
+          -t $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }} \
+          .
+
+
+      - name: Push Docker Image ApiDemoForDeploy/Dockerfile
+        run: |
+          docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }}
+
+      - name: Update App Service Container
+        run: |
+          az webapp config container set \
+            --name $WEBAPP_NAME \
+            --resource-group $RESOURCE_GROUP \
+            --docker-custom-image-name $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }}
+
+      - name: Restart App Service
+        run: |
+          az webapp restart \
+            --name $WEBAPP_NAME \
+            --resource-group $RESOURCE_GROUP
