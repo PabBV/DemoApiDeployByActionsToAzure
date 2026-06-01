@@ -21,7 +21,7 @@ jobs:
 
   build-and-deploy:
     environment:
-        name: dev
+        name: prod
     runs-on: ubuntu-latest
 
     steps:
